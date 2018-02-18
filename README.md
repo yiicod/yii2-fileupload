@@ -79,14 +79,6 @@ FileUploadWidget::widget([
             //For chunk uploded
             'maxChunkSize' => 10000000
         ),
-        'clientEvents' => array(
-            //If is not chunk then
-            'done' => 'function(e, data){ $(".avatar").html("<img src=" + data.result.files[0].url + " />"); }'
-            //If uses chunk then
-            'chunkdone' => 'function(e, data){
-                $.fn.yiiListView.update("rewardList"); $("#cocowidget-photo .files").html(" "); 
-            }',
-        ),
     ],
     'options' => [],
     'defaultUrl' => 'site/fileUpload',    
