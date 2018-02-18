@@ -32,7 +32,6 @@
     "autoload": {
         "psr-4": {
             "yiicod\\fileupload\\": "/"
-        },
-        "files": ["/../blueimp/jquery-file-upload/server/php/UploadHandler.php"]
+        }
     }
 }
