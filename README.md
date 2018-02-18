@@ -1,12 +1,12 @@
-File uploader based on blueimp jquery-file-upload
-================================================
+Yii File uploader based on blueimp jquery-file-upload
+=====================================================
 
 File uploader base on blueimp jquery-file-upload. You can write easy themes for
 uploader. This extension provide you all workflow for upload files on your server.
 
 
-Install:
---------
+#### Install:
+
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
@@ -24,8 +24,7 @@ or add
 
 to the require section of your composer.json.
 
-Config
-------
+#### Config
 
 Set to controller
 ```php
@@ -57,8 +56,8 @@ public function behaviors()
 }
 ```
 
-Usage
------
+#### Usage
+
 ```php
 FileUploadWidget::widget([
     'id' => 'fileuploader',
@@ -68,7 +67,7 @@ FileUploadWidget::widget([
     'maxFileSize' => 2 * 1024 * 1024, // limit in server-side and in client-side 2mb
     'uploadDir' => Yii::getPathOfAlias('@webroot/uploads/temp'), // temp base dir
     'uploadUrl' => Yii::$app->getBaseUrl(true) . '/uploads/temp/', // temp base url
-    'uploader' => 'UserAvatar',
+    'uploader' => UserAvatar::class,
     'userData' => [], // Any data for UploaderInterface
     'maxUploads' => -1, // defaults to -1 (unlimited)   
     'theme' => [
@@ -96,8 +95,8 @@ FileUploadWidget::widget([
 
 Then add uploader, which extends yiicod\fileupload\base\UploaderInterface and provides functionality to handle uploaded file
 
-Upload immediately
-------------------
+#### Upload immediately
+
 ```php
 class UserAvatar implement UploaderInterface {
     /**
@@ -132,8 +131,8 @@ class UserAvatar implement UploaderInterface {
 }
 ```
 
-Upload on submit
-----------------
+#### Upload on submit
+
 ```php
 class UserAvatar implement UploaderInterface{
     
