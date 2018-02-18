@@ -1,6 +1,8 @@
 Yii File uploader based on blueimp jquery-file-upload
 =====================================================
 
+[![Latest Stable Version](https://poser.pugx.org/yiicod/yii2-fileupload/v/stable)](https://packagist.org/packages/yiicod/yii2-fileupload) [![Total Downloads](https://poser.pugx.org/yiicod/yii2-fileupload/downloads)](https://packagist.org/packages/yiicod/yii2-fileupload) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/yiicod/yii2-fileupload/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/yiicod/yii2-fileupload/?branch=master)[![Code Climate](https://codeclimate.com/github/yiicod/yii2-fileupload/badges/gpa.svg)](https://codeclimate.com/github/yiicod/yii2-fileupload)
+
 File uploader base on blueimp jquery-file-upload. You can write easy themes for
 uploader. This extension provide you all workflow for upload files on your server.
 
