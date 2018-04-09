@@ -2,7 +2,7 @@
 
 namespace yiicod\fileupload\themes;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 use yiicod\fileupload\widgets\FileUpload;
 
 /**
@@ -13,7 +13,7 @@ use yiicod\fileupload\widgets\FileUpload;
  *
  * @package yiicod\fileupload\components\base
  */
-abstract class ThemeAbstract extends Object implements ThemeInterface
+abstract class ThemeAbstract extends BaseObject implements ThemeInterface
 {
     /**
      * File upload widget instance

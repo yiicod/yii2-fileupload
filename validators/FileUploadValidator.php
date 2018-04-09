@@ -2,7 +2,7 @@
 
 namespace yiicod\fileupload\validators;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 use yiicod\fileupload\components\common\UploadedFile;
 
 /**
@@ -12,7 +12,7 @@ use yiicod\fileupload\components\common\UploadedFile;
  *
  * @package yiicod\fileupload\validators
  */
-class FileUploadValidator extends Object implements ValidatorInterface
+class FileUploadValidator extends BaseObject implements ValidatorInterface
 {
     /**
      * Error message

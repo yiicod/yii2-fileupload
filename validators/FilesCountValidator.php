@@ -2,7 +2,7 @@
 
 namespace yiicod\fileupload\validators;
 
-use yii\base\Object;
+use yii\base\BaseObject;
 use yiicod\fileupload\components\common\UploadedFile;
 use yiicod\fileupload\components\traits\ServerVariableTrait;
 
@@ -13,7 +13,7 @@ use yiicod\fileupload\components\traits\ServerVariableTrait;
  *
  * @package yiicod\fileupload\validators
  */
-class FilesCountValidator extends Object implements ValidatorInterface
+class FilesCountValidator extends BaseObject implements ValidatorInterface
 {
     use ServerVariableTrait;
 
