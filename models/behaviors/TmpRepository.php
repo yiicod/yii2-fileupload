@@ -2,6 +2,7 @@
 
 namespace yiicod\fileupload\models\behaviors;
 
+use Symfony\Component\Filesystem\Filesystem;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\web\Application;
@@ -86,7 +87,8 @@ class TmpRepository implements TmpRepositoryInterface
     public function removeFile(string $field): bool
     {
         if (Yii::$app instanceof Application) {
-            @unlink(Yii::$app->session->get($this->generateKey($field)));
+            $fs = new Filesystem();
+            $fs->remove(Yii::$app->session->get($this->generateKey($field)));
             Yii::$app->session->set($this->generateKey($field), '');
         }
 
