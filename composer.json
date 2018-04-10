@@ -18,7 +18,8 @@
     "require": {
         "yiisoft/yii2": "2.*",
         "blueimp/jquery-file-upload": "9.*",
-        "yiicod/yii2-base": "1.*"
+        "yiicod/yii2-base": "1.*",
+        "symfony/filesystem": "~3.0|~4.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.1"

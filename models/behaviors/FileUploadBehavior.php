@@ -3,6 +3,7 @@
 namespace yiicod\fileupload\models\behaviors;
 
 use Exception;
+use Symfony\Component\Filesystem\Filesystem;
 use Yii;
 use yii\base\Behavior;
 use yii\base\Event;
@@ -134,7 +135,8 @@ class FileUploadBehavior extends Behavior
         $this->owner->{$field} = '';
         $this->owner->save(false);
 
-        FileUpload::rrmfile($this->getFilePath($field));
+        $fs = new Filesystem();
+        $fs->remove($this->getFilePath($field));
     }
 
     /**
@@ -143,7 +145,9 @@ class FileUploadBehavior extends Behavior
     public function removeFiles()
     {
         Event::trigger($this, self::EVENT_REMOVE_ALL_FILES, new RemoveAllFiles($this->getSourceRepository()->getUploadDir(), $this->getFolderPath()));
-        FileUpload::rrmdir($this->getFolderPath());
+
+        $fs = new Filesystem();
+        $fs->remove($this->getFolderPath());
     }
 
     /**
