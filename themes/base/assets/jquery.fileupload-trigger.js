@@ -41,21 +41,21 @@
             .on('fileuploadprocessalways', $.proxy(function (e, data) {
                 if (data.files[data.index].error) {
                     this.input.empty();
-                    this.button.trigger('fileuploadprocessalways:error', data.files[data.index].error);
+                    this.trigger(this.button, 'fileuploadprocessalways:error', data.files[data.index].error);
                 }
             }, this))
             .on('fileuploadprogressall', $.proxy(function (e, data) {
                 var progress = parseInt(data.loaded / data.total * 100, 10);
 
-                this.button.trigger('fileuploadprogressall:progress', progress);
+                this.trigger(this.button, 'fileuploadprogressall:progress', progress);
             }, this))
             .on('fileuploaddone', $.proxy(function (e, data) {
                 $.each(data.result.files, $.proxy(function (index, file) {
                     if (file.error) {
-                        this.button.trigger('fileuploaddone:error', file);
+                        this.trigger(this.button, 'fileuploaddone:error', file);
                         this.input.empty();
                     } else {
-                        this.button.trigger('fileuploaddone:success', file);
+                        this.trigger(this.button, 'fileuploaddone:success', file);
                         this.input.val(file.name);
                     }
                 }, this));
@@ -69,6 +69,14 @@
             .parent().addClass($.support.fileInput ? undefined : 'disabled');
     };
 
+    FileUploadTrigger.prototype.trigger = function (elem, name, data) {
+        elem.trigger(name, data);
+        $.event.trigger({
+            type: name,
+            data: data
+        });
+    }
+
     FileUploadTrigger.prototype.dragAndDrop = function () {
         $(document)
             .on('dragover', $.proxy(function (e) {
@@ -77,7 +85,7 @@
                 if (!timeout) {
                     this.dropZone.addClass('in');
                     // this.dropZone.children('.button-wrap').text(this.options.messages['drop']);
-                    this.dropZone.trigger('fileuploaddone:drag-and-drop:drop');
+                    this.trigger(this.dropZone, 'fileuploaddone:drag-and-drop:drop');
                 } else {
                     clearTimeout(timeout);
                 }
@@ -93,17 +101,17 @@
                 } while (node != null);
                 this.dropZone.removeClass('in hover');
                 // this.dropZone.children('.button-wrap').text(this.options.messages['select']);
-                this.dropZone.trigger('fileuploaddone:drag-and-drop:select');
+                this.trigger(this.dropZone, 'fileuploaddone:drag-and-drop:select');
                 if (found) {
                     foundDropzone.addClass('hover');
                     // foundDropzone.children('.button-wrap').text(this.options.messages['drop-text']);
-                    this.dropZone.trigger('fileuploaddone:drag-and-drop:drop-here');
+                    this.trigger(this.dropZone, 'fileuploaddone:drag-and-drop:drop-here');
                 }
             }, this))
             .on('drop', this.dropZone, $.proxy(function (e, data) {
                 this.dropZone.removeClass('in hover');
                 // this.dropZone.children('.button-wrap').text(this.options.messages['select']);
-                this.dropZone.trigger('fileuploaddone:drag-and-drop:select', data);
+                this.trigger(this.dropZone, 'fileuploaddone:drag-and-drop:select', data);
             }, this));
     };
 
