@@ -128,10 +128,10 @@ class FileUploadAction extends Action
         } catch (Exception $e) {
             $response = Yii::$app->response;
             $response->format = Response::FORMAT_RAW;
-            $response->setStatusCode($e->getCode(), $e->getMessage());
+            $response->setStatusCode($e->getCode() > 0 ? $e->getCode() : 400, $e->getMessage());
         }
 
-        Yii::error(LoggerMessage::log($e), __METHOD__);
+        Yii::warning(LoggerMessage::log($e), __METHOD__);
 
         return $response;
     }
