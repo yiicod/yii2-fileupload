@@ -71,10 +71,7 @@
 
     FileUploadTrigger.prototype.trigger = function (elem, name, data) {
         elem.trigger(name, data);
-        $.event.trigger({
-            type: name,
-            data: data
-        });
+        $.event.trigger(name, data);
     }
 
     FileUploadTrigger.prototype.dragAndDrop = function () {
