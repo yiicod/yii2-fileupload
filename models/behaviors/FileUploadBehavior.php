@@ -309,7 +309,7 @@ class FileUploadBehavior extends Behavior
     }
 
     /**
-     * After save, file move in folder for model and delete temp file
+     * After save, file will be moved to folder depend on model and tmp file will be deleted
      *
      * @param Event $event event parameter
      *
@@ -326,11 +326,13 @@ class FileUploadBehavior extends Behavior
                     }
                 }
                 $this->owner->{$field} = $this->fieldsValues[$field];
-                if (!@copy($tmpPath, $this->getFilePath($field))) {
-                    $this->cleanOnException($field);
-                    throw new FileException('File can\'t copy from!', 'File can\'t copy from ' . $tmpPath . ' to dest: ' . $this->getFilePath($field), 500);
+                if(!@rename($tmpPath, $this->getFilePath($field))) {
+                    if (!@copy($tmpPath, $this->getFilePath($field))) {
+                        $this->cleanOnException($field);
+                        throw new FileException('File can\'t copy from!', 'File can\'t copy from ' . $tmpPath . ' to dest: ' . $this->getFilePath($field), 500);
+                    }
+                    $this->removeTmpFile($field);
                 }
-                $this->removeTmpFile($field);
             }
             $this->removeTmpFile($field);
         }
